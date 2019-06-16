@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from resurrectgram.logger import Logger
 from time import sleep
 from py_tdlib import Client, Pointer, Auth
-from py_tdlib.constructors import getChatEventLog, getMe
+from py_tdlib.constructors import getChats, getChatEventLog, getMe
 
 class Crawler(object):
     def __init__(self, config, logger = None):
@@ -24,6 +24,13 @@ class Crawler(object):
 
     def login(self):
         self.attach_client(1)
+
+    def chats(self):
+        return self.client.send(getChats(
+            offset_order=9223372036854775807,
+            offset_chat_id=0,
+            limit=self.config['max_chats']
+        ))
 
     def attach_client(self, verbosity=0):
         try:
@@ -114,6 +121,12 @@ class Crawler(object):
             return False, from_id
 
     def crawl(self):
+        if self.config['chat_id'] not in [str(chat_id) for chat_id in self.chats().chat_ids]:
+            self.logger.fatal(
+                "Your chat is not in top chat lists.\n" +
+                "Please increase max_chats or double check your chat_id.\n"
+            )
+
         from_id = None
 
         while True:

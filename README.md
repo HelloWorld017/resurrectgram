@@ -16,22 +16,36 @@ and place it in resurrectgram directory
 5. Create configuration: `config.json`  
 6. Create directory `data/sessions/default`  
 7. `python3 main.py login`  
-8. `python3 main.py`
+8. `python3 main.py chats`  
+9. `python3 main.py`
 
 ### Example configuration
 ```js
 {
 	"api_id": 1234567,
 	"api_hash": "0123456789abcdef0123456789abcdef",
-	"chat_id": "-1234567890123", // Your group id
-	"send_rate": 1, // req/sec
+	"chat_id": "-1234567890123",
+	"send_rate": 1,
+	"max_chats": 200,
 	"max_retry": 5,
-	"tdjson_path": "lib/tdjson.dll", // Path to tdjson.dll
+	"tdjson_path": "lib/tdjson.dll",
 
-	"database_ip": "127.0.0.1", // MongoDB ip
-	"database_port": 27017, // MongoDB port
-	"database_name": "resurrectgram" // MongoDB Database Name
+	"database_ip": "127.0.0.1",
+	"database_port": 27017,
+	"database_name": "resurrectgram"
 }
 ```
 
-You can get api_id and api_hash from [here](https://my.telegram.org/apps)
+**Explanation**
+
+* api_id, api_hash:
+You can get api_id and api_hash from [here](https://my.telegram.org/apps)  
+* chat_id:
+Your group id. You can get it by `python3 main.py chats` but it only returns bunch of chat IDs.  
+Please use another way to get chat ID  
+* send_rate: request per seconds  
+* max_chats: Amount of chat lists to load.  
+If you're group is not in top N chat lists (N: max_chats), the crawling process might have errors.  
+* max_retry: Maximum amount to retry if fetching recent log fails.  
+* tdjson_path: Path to tdjson.dll  
+* database_ip, database_port, database_name: IP, Port, DB Name of your MongoDB

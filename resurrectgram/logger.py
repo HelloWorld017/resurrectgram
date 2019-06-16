@@ -6,23 +6,31 @@ from signalepy import Signale
 class Logger(object):
     def __init__(self):
         self.logger = Signale({
-            "scope": "Resurrectgram",
-            "custom": [
-                {
-                    "badge": "\u2237",
-                    "label": "Progress",
-                    "color": "magenta",
-                    "name": "progress"
-                },
-
-                {
-                    "badge": "\u2715",
-                    "label": "Fatal",
-                    "color": "red",
-                    "name": "fatal"
-                }
-            ]
+            "scope": "Resurrectgram"
         })
+
+        # From bugs of signale
+        setattr(
+            self.logger,
+            "progress",
+            lambda text="", prefix="", suffix="": self.logger.log(text, prefix, suffix, {
+                "name": "progress",
+                "badge": "\u2237",
+                "label": "Progress",
+                "color": "purple"
+            })
+        )
+
+        setattr(
+            self.logger,
+            "fatal",
+            lambda text="", prefix="", suffix="": self.logger.log(text, prefix, suffix, {
+                "badge": "\u2715",
+                "label": "Fatal",
+                "color": "red",
+                "name": "fatal"
+            })
+        )
 
         file_handler = logging.FileHandler(filename="./resurrectgram.log")
         file_handler.setFormatter(logging.Formatter("[%(levelname)s] %(asctime)s > %(message)s"))
