@@ -15,7 +15,8 @@ and place it in resurrectgram directory
 4. Install mongodb  
 5. Create configuration: `config.js`  
 6. Create directory `data/sessions/default`  
-7. `python3 main.py`
+7. `python3 main.py login`  
+8. `python3 main.py`
 
 ### Example configuration
 ```js

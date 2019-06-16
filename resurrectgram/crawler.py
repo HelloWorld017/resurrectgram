@@ -22,13 +22,13 @@ class Crawler(object):
         if self.logger is None:
             self.logger = Logger()
 
-        self.attach_client()
-        self.attach_database()
+    def login(self):
+        self.attach_client(1)
 
-    def attach_client(self):
+    def attach_client(self, verbosity=0):
         try:
             tdjson = Pointer(self.config['tdjson_path'])
-            tdjson.verbosity(0)
+            tdjson.verbosity(verbosity)
 
             self.client = Client(tdjson)
 
