@@ -13,7 +13,7 @@ This is a tool to export Recent Activity in admin menu of telegram group chats.
 3. Build tdjson library (you can find informations about builds [here](https://tdlib.github.io/td/build.html))
 and place it in resurrectgram directory  
 4. Install mongodb  
-5. Create configuration: `config.js`  
+5. Create configuration: `config.json`  
 6. Create directory `data/sessions/default`  
 7. `python3 main.py login`  
 8. `python3 main.py`
