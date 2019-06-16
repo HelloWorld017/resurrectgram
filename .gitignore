@@ -1,0 +1,6 @@
+config.json
+resurrectgram.log
+data/
+lib/
+__pycache__/
+*.pyc
