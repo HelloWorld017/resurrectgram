@@ -8,7 +8,8 @@ This is a tool to export Recent Activity in admin menu of telegram group chats.
 1. Clone resurrectgram  
 `$ git clone https://github.com/HelloWorld017/resurrectgram`  
 2. Install libraries using requirements.txt
-`$ pip3 install -r requirements.txt`
+`$ pip3 install -r requirements.txt`  
+`$ pip3 install git+https://github.com/andrew-ld/python-tdlib` (The author didn't uploaded it to PyPI)  
 3. Build tdjson library (you can find informations about builds [here](https://tdlib.github.io/td/build.html))
 and place it in resurrectgram directory  
 4. Install mongodb  
